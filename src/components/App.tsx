@@ -17,19 +17,22 @@ function App() {
                 }
             );
 
+    }, []);
 
-        const urlDbHealthCheck = `${process.env.REACT_APP_BACKEND_URL}/databaseHealthCheck`;
-        fetch(urlDbHealthCheck)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setDbHealthStatus({
-                        status: result.status
-                    });
-                }
-            );
-
-    }, [])
+    useEffect(() => {
+        if (httpHealthStatus.status === 'reachable') {
+            const urlDbHealthCheck = `${process.env.REACT_APP_BACKEND_URL}/databaseHealthCheck`;
+            fetch(urlDbHealthCheck)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        setDbHealthStatus({
+                            status: result.status
+                        });
+                    }
+                );
+        }
+    }, [httpHealthStatus]);
 
     return (
         <div className="App">
