@@ -2,24 +2,42 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-    const [healthStatus, setHealthStatus] = useState({status: 'Unknown'});
+    const [httpHealthStatus, setHttpHealthStatus] = useState({ status: 'unknown' });
+    const [dbHealthStatus, setDbHealthStatus] = useState({ status: 'unknown' });
 
     useEffect(() => {
-        const url = `${process.env.REACT_APP_BACKEND_URL}/healthcheck`;
-        fetch(url)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                setHealthStatus({
-                    status: result.status
-                });
-            }
-        )
+        const urlHttpHealthCheck = `${process.env.REACT_APP_BACKEND_URL}/httpHealthCheck`;
+        fetch(urlHttpHealthCheck)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setHttpHealthStatus({
+                        status: result.status
+                    });
+                }
+            );
+
+
+        const urlDbHealthCheck = `${process.env.REACT_APP_BACKEND_URL}/databaseHealthCheck`;
+        fetch(urlDbHealthCheck)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setDbHealthStatus({
+                        status: result.status
+                    });
+                }
+            );
+
     }, [])
 
     return (
         <div className="App">
-            Backend connection status: <span className="App__health">{healthStatus.status}</span>
+            <div className="App__healthCheck">Frontend - Backend connection status: <code>{httpHealthStatus.status}</code></div>
+            {httpHealthStatus.status !== 'unknown' &&
+                <div className="App__healthCheck">Backend - Database connection status: <code>{dbHealthStatus.status}</code></div>
+            }
+
         </div>
     );
 }
