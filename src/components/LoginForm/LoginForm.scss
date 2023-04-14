@@ -1,0 +1,14 @@
+.LoginForm {
+    max-width: var(--max-width);
+    margin: 0 auto;
+
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & form {
+        display: flex;
+        flex-direction: column;
+    }
+}

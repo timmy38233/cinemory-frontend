@@ -1,0 +1,20 @@
+.MovieCarousel {
+    max-width: var(--max-width);
+    margin: 0 auto;
+
+    height: 50vh;
+    max-height: 50vh;
+
+    &__container, &__slider, &__item {
+        height: 100%;
+        max-height: 100%;
+    }
+}
+
+.react-multi-carousel-item:not(.react-multi-carousel-item--active) {
+    /* highlight first item */
+}
+
+.react-multi-carousel-item--active + .react-multi-carousel-item:not(.react-multi-carousel-item--active) {
+    /* highlight last item */
+}

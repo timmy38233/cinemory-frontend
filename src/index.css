@@ -1,3 +1,36 @@
+* {
+    box-sizing: border-box;
+    --max-width: 1024px;
+    --default-padding: 10px;
+
+    --color-base: #8cc0de;
+    --color-base-dark: #4d7891;
+    --color-highlight: #ffd9c0;
+}
+
 body {
-  margin: 0;
+    margin: 0;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.logoText {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+}
+
+.errorMessage {
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 5px;
+    color: rgb(255, 0, 0);
+    background-color: rgb(255, 255, 255);
 }
